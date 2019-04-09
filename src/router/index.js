@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Layout from '@/views/layout/index'
 
 Vue.use(Router)
 
@@ -20,6 +21,19 @@ export default new Router({
           path: '/forget',
           component: () => import('@/views/login/forget'),
           name: 'LoginForget'
+        }
+      ]
+    },
+    {
+      path: '/school',
+      name: 'school',
+      meta: { title: '控件库' },
+      component: Layout,
+      children: [
+        {
+          path: '/schoolDetial',
+          component: () => import('@/views/school/index'),
+          name: 'schoolDetial'
         }
       ]
     }

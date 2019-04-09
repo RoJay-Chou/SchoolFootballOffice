@@ -56,22 +56,22 @@ export default {
       redirect: undefined
     }
   },
-  watch: {
-    $route: {
-      handler: function(route) {
-        this.redirect = route.query && route.query.redirect
-      },
-      immediate: true
-    }
-  },
   methods: {
     saveToLogin() {
-      this.$store.dispatch('Login', this.ruleForm).then(() => {
-        this.$router.push({ path: this.redirect || '/' })
-      })
+      if (this.ruleForm.username === 'admin' && this.ruleForm.password === 'abcd1234') {
+        this.$router.push({ name: 'schoolDetial' })
+      } else {
+        this.$confirm('账号或密码错误!', '提示', {
+          confirmButtonText: '确定',
+          showCancelButton: false,
+          showClose: false,
+          type: 'error'
+        }).then(() => {
+          this.ruleForm.password = ''
+        })
+      }
     },
     forgetBtn() {
-      console.log('9+++++')
       this.$router.push({ name: 'LoginForget' })
     }
   }
@@ -90,9 +90,14 @@ export default {
     font-style: normal;
     font-size: 28px;
     color: #666666;
+    &:hover {
+      color: #666666;
+      -webkit-text-stroke: 1px gold;
+    }
   }
   .container-text{
     font-size: 18px;
+    font-weight: 500;
     color: #666666;
     margin-top: 10px;
     margin-bottom: 40px;
