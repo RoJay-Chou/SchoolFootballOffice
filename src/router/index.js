@@ -33,7 +33,15 @@ export default new Router({
         {
           path: '/schoolDetial',
           component: () => import('@/views/school/index'),
-          name: 'schoolDetial'
+          name: 'schoolDetial',
+          redirect: '/schoolInfo',
+          children: [
+            {
+              path: '/schoolInfo',
+              component: () => import('@/views/school/detail'),
+              name: 'schoolInfo'
+            }
+          ]
         }
       ]
     }

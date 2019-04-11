@@ -1,21 +1,16 @@
 <template>
-  <div>123</div>
+  <router-view class="router-view"/>
 </template>
-
 <script>
 export default {
   name: 'School'
 }
 </script>
-
-<style scoped>
-.app-main {
-  /*84 = navbar + tags-view = 50 +34 */
-  min-height: calc(100vh - 88px);
-  width: 100%;
-  padding-top: 88px;
-  position: relative;
-  overflow: hidden;
+<style lang="scss" scoped>
+html, body{
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:100%;
 }
 </style>
-
