@@ -17,7 +17,6 @@
         <button type="button" class="login-btn" @click="saveToLogin">登录</button>
       </div>
     </el-form>
-    <div class="login-forget"><span @click="forgetBtn">忘记密码？</span></div>
   </div>
 </template>
 

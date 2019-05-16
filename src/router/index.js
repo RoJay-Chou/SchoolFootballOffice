@@ -40,6 +40,16 @@ export default new Router({
               path: '/schoolInfo',
               component: () => import('@/views/school/detail'),
               name: 'schoolInfo'
+            },
+            {
+              path: '/schoolEdit',
+              component: () => import('@/views/school/edit'),
+              name: 'schoolEdit'
+            },
+            {
+              path: '/playerInfo',
+              component: () => import('@/views/player/detail'),
+              name: 'playerInfo'
             }
           ]
         }

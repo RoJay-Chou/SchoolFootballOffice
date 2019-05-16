@@ -22,20 +22,14 @@
             </template>
             <el-menu-item-group>
               <template slot="title">球队</template>
-              <el-menu-item :index="routerList.name">球队列表</el-menu-item>
-              <el-menu-item index="1-2">球队战绩</el-menu-item>
+              <el-menu-item :index="routerList[0].name">球队列表</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group>
               <template slot="title">球员</template>
-              <el-menu-item index="1-3">球员列表</el-menu-item>
-              <el-menu-item index="1-4">球员数据</el-menu-item>
+              <el-menu-item :index="routerList[1].name">球员列表</el-menu-item>
             </el-menu-item-group>
-            <el-submenu index="1-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="1-4-1">选项1</el-menu-item>
-            </el-submenu>
           </el-submenu>
-          <el-menu-item class="layout-wapper__leftcontent" index="2">
+          <el-menu-item :index="routerList[2].name" class="layout-wapper__leftcontent" >
             <i class="el-icon-menu"/>
             <span>学校信息</span>
           </el-menu-item>
@@ -115,9 +109,13 @@ export default {
       logo,
       show: false,
       footballLogo,
-      routerList: {
-        name: '/schoolDetial'
-      }
+      routerList: [{
+        name: 'playerInfo'
+      }, {
+        name: 'playerInfo'
+      }, {
+        name: 'schoolDetial'
+      }]
     }
   },
   methods: {
@@ -129,6 +127,7 @@ export default {
     },
     select(key, keyPath) {
       console.log(key, keyPath)
+      this.$router.push({ name: key })
     },
     callMe() {
       this.show = true
@@ -160,6 +159,7 @@ export default {
 }
 body{
   overflow-x: hidden;
+  overflow-y: auto;
 }
 .layout-wapper__left {
   z-index: 11;

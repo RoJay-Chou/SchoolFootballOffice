@@ -9,7 +9,6 @@ import '@/styles/index.scss' // 全局样式
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

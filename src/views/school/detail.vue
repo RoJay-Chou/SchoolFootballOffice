@@ -1,41 +1,112 @@
 <template>
   <div class="container">
-    <global-header text="学校列表"/>
-    <div v-if="true" class="school-wapperFirstIn">
-      <div class="school-wapperFirstInTitle">数字化体育成绩和团队管理流程</div>
-      <div class="school-wapperFirstInCard">
-        <el-carousel :autoplay="false" type="card">
-          <el-carousel-item v-for="item in 4" :key="item">
-            <div class="el-carousel-item__title">{{ item }}</div>
-          </el-carousel-item>
-        </el-carousel>
+    <global-header text="学校信息" @click.native="getUser()"/>
+    <transition name="el-zoom-in-top">
+      <div v-show="show" class="school-wapperFirstIn">
+        <div class="school-wapperFirstInTitle">数字化体育成绩和团队管理流程</div>
+        <div class="school-wapperFirstInCard">
+          <el-carousel :autoplay="false" type="card">
+            <el-carousel-item v-for="item in [1,2,0]" :key="item">
+              <div class="el-carousel-item__title" @click="choose(item)">
+                <img :src="bkg[item]" class="el-carousel-item__img">
+              </div>
+            </el-carousel-item>
+          </el-carousel>
+        </div>
       </div>
-    </div>
-    <div v-else class="school-wapper">
-      <el-row :gutter="20">
-        <el-col :span="8">
-          <div class="school-name">
-            <div class="school-nameImg"><img :src="logo" class="sap-logo" ></div>
-            <div class="school-nameText">{{ schoolInfo.name || '电子科技大学成都学院' }}</div>
-          </div>
-        </el-col>
-        <el-col :span="8">
-          <div class="school-info">
-            <div class="school-info__title">基本信息</div>
-          </div>
-        </el-col>
-        <el-col :span="8">
-          <div class="school-info">
-            <div class="school-info__title">联系方式</div>
-          </div>
-        </el-col>
-      </el-row>
-    </div>
+    </transition>
+    <transition name="el-zoom-in-bottom">
+      <div v-show="!show" class="school-wapper">
+        <el-row :gutter="20">
+          <el-col :span="8">
+            <div class="school-name">
+              <div class="school-nameImg" @click="show = true"><img :src="logo" class="sap-logo" ></div>
+              <div class="school-nameText">{{ schoolInfo.name || '电子科技大学成都学院' }}</div>
+            </div>
+          </el-col>
+          <el-col :span="8">
+            <div class="school-info">
+              <div class="school-info__title">基本信息</div>
+              <div class="unit-center__container">
+                <div class="unit-center__items">
+                  <div class="unit-items__title">学校类型</div>
+                  <div class="unit-items__content">{{ schoolInfo.category || '高等学校' }}</div>
+                </div>
+                <div class="unit-center__items">
+                  <div class="unit-items__title">所在地区</div>
+                  <div class="unit-items__content">{{ schoolInfo.locationStr || '四川省/成都市' }}</div>
+                </div>
+
+                <div class="unit-center__items">
+                  <div class="unit-items__title">详细地址</div>
+                  <div class="unit-items__content">{{ schoolInfo.detailedAddress || '四川省成都市高新西区百叶路1号' }}</div>
+                </div>
+
+                <div class="unit-center__items">
+                  <div class="unit-items__title">主力球队</div>
+                  <div class="unit-items__content">{{ schoolInfo.starTeam || '主力球队' }}</div>
+                </div>
+
+                <div class="unit-center__items">
+                  <div class="unit-items__title">球队数</div>
+                  <div class="unit-items__content">{{ schoolInfo.teamNum || '1' }}</div>
+                </div>
+
+                <div class="unit-center__items">
+                  <div class="unit-items__title">球员数</div>
+                  <div class="unit-items__content">{{ schoolInfo.playerNum || '1' }}</div>
+                </div>
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="8">
+            <div class="school-info">
+              <div class="school-info__title">联系方式</div>
+              <div class="unit-center__container" style="margin-bottom: 0">
+                <div class="unit-center__items">
+                  <div class="unit-items__title">学校电话</div>
+                  <div class="unit-items__content">{{ schoolInfo.phoneNum || '02800000000' }}</div>
+                </div>
+
+                <div class="unit-center__items">
+                  <div class="unit-items__title">学校邮编</div>
+                  <div class="unit-items__content">{{ schoolInfo.postcode || '611731 ' }}</div>
+                </div>
+
+                <div class="unit-center__items">
+                  <div class="unit-items__title">联系人姓名</div>
+                  <div class="unit-items__content">{{ schoolInfo.contactName || '周瑞杰' }}</div>
+                </div>
+
+                <div class="unit-center__items">
+                  <div class="unit-items__title">联系人手机号</div>
+                  <div class="unit-items__content">{{ schoolInfo.contactMobile || '15883218928' }}</div>
+                </div>
+
+                <div class="unit-center__items">
+                  <div class="unit-items__title">联系人邮箱</div>
+                  <div class="unit-items__content">{{ schoolInfo.contactMail || 'rojay_chou@163.com' }}</div>
+                </div>
+
+                <div class="unit-center__items">
+                  <div class="unit-items__title">备注</div>
+                  <div class="unit-items__content">{{ schoolInfo.remark || '备注备注备注' }}</div>
+                </div>
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+    </transition>
   </div>
 </template>
 <script>
 import logo from '@/assets/JayLogo.png'
+import bkg1 from '@/assets/unitBG.jpg'
+import bkg2 from '@/assets/schoolBkg.jpg'
+import bkg3 from '@/assets/unitBG.jpg'
 import globalHeader from '@/components/header'
+import { getUserInfo } from '@/api'
 export default {
   name: 'SchoolDetial',
   components: {
@@ -43,7 +114,13 @@ export default {
   },
   data() {
     return {
+      bkg: [
+        bkg1,
+        bkg2,
+        bkg3
+      ],
       logo,
+      show: true,
       schoolInfo: {
         name: '',
         logo: '',
@@ -61,6 +138,26 @@ export default {
         remark: ''
       }
     }
+  },
+  created() {
+    this.$message({
+      message: '登录成功！',
+      customClass: 'ptInfoMessage'
+    })
+  },
+  methods: {
+    choose(item) {
+      console.log('+++', item)
+      if (item === 1) {
+        this.show = false
+      }
+    },
+    getUser() {
+      console.log('+++-----------+++')
+      getUserInfo().then(response => {
+        console.log('+++-----------', response)
+      })
+    }
   }
 }
 </script>
@@ -73,6 +170,10 @@ export default {
   background-size: 100% auto;
   background-position: left top;
   background-repeat: no-repeat;
+}
+.school-wapper {
+  height: 100%;
+  width: 100%;
 }
 .school-wapperFirstIn {
   height: 100%;
@@ -121,8 +222,12 @@ export default {
 }
 .el-carousel-item__title {
   color: #000;
-  position: relative;
-  top: 100px;
+  .el-carousel-item__img {
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
 .school-name {
   display: flex;
@@ -155,6 +260,25 @@ export default {
     color: #303133;
     font-size: 15px;
     font-weight: 600;
+    margin-bottom: 20px;
+  }
+}
+.unit-center__container{
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  .unit-center__items{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+  .unit-items__title{
+    flex: 1;
+    color: #000;
+  }
+  .unit-items__content{
+    flex: 1.7;
+    color: #000;
   }
 }
 </style>
