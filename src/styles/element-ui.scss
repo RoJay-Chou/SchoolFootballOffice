@@ -1,0 +1,211 @@
+//to reset element-ui default css
+.el-upload {
+  input[type="file"] {
+    display: none !important;
+  }
+}
+
+.el-upload__input {
+  display: none;
+}
+
+//暂时性解决diolag 问题 https://github.com/ElemeFE/element/issues/2461
+.el-dialog {
+  transform: none;
+  left: 0;
+  position: relative;
+  margin: 0 auto;
+}
+
+//element ui upload
+.upload-container {
+  .el-upload {
+    width: 100%;
+
+    .el-upload-dragger {
+      width: 100%;
+      height: 200px;
+    }
+  }
+}
+
+ //to reset element-ui default css
+ /* 改变主题色变量 */
+ $--color-primary: #079ee5;
+
+ /* 改变 icon 字体路径变量，必需 */
+ $--font-path: '~element-ui/lib/theme-chalk/fonts';
+ 
+ @import "~element-ui/packages/theme-chalk/src/index";
+ 
+ 
+ // input默认样式调整
+ 
+ // 调整报错样式
+ .el-form-item.is-error .el-input__inner{
+   border: 3px solid red;
+ }
+ 
+ // input 必填*样式
+ .el-form-item__label{
+   &::before{
+     color: #898C8F !important;
+   }
+ }
+ 
+ .el-form-item__error{
+   font-weight: 400;
+   font-size: 13px;
+   color: #333333;
+   background-color: rgba(255, 153, 144, 1);
+   padding: 5px 10px;
+ }
+ .el-form-item.is-success .el-input__inner{
+   border-color: #dcdfe6;
+ }
+ .el-form-item.is-success .el-input__inner, .el-form-item.is-success .el-input__inner:focus{
+   border-color: #dcdfe6;
+ }
+ .el-input__inner{
+   &:active {
+     border-color: #dcdfe6;
+   }
+   &:focus {
+     border-color: #dcdfe6;
+   }
+ }
+ .el-form-item__label{
+   font-weight: 400;
+   font-size: 13px;
+   color: #D7D7D7;
+ }
+ 
+ // 日历控件调整
+ .el-date-editor.el-input{
+   width: 100%;
+ }
+ .el-input__prefix{
+   display: none;
+ }
+ .el-input--prefix .el-input__inner{
+   padding-left: 15px;
+ }
+ .el-form-item__content{
+   position: relative;
+ }
+ .content-icon__date{
+   position: absolute;
+   top: 41px;
+   right: 7px;
+   font-family: 'sapsportsone';
+   font-weight: 400;
+   font-size: 18px;
+   color: #079EE5;
+ }
+ 
+ // select框调整
+ .el-input__suffix{
+   right: 0.5px;
+   height: calc(100% - 1.5px);
+   top: 0.5px;
+   background-color: rgba(237, 239, 242, 1);
+   border-color: #dcdfe6;
+   border-radius: 0 4px 4px 0;
+   &:hover{
+     background-color: rgba(0, 157, 225, 1);
+     border-color: #dcdfe6;
+   }
+ }
+ .el-select .el-input.is-focus .el-input__inner{
+   border-color: #dcdfe6;
+ }
+ .el-select .el-input__inner:focus{
+   border-color: #dcdfe6;
+ }
+ .el-select .el-input .el-select__caret{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+ .el-select{
+   .is-focus{
+     border-color: #dcdfe6;
+     .el-input__suffix{
+       background-color: rgba(0, 157, 225, 1);
+       border-color: #dcdfe6;
+     }
+   }
+ }
+ 
+ // select 错误样式调整
+ .is-error{
+     .el-select{
+       .el-input__suffix{
+         right: 3px;
+         height: calc(100% - 8px);
+         top: 4px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+       }
+     }
+     .el-cascader{
+       .el-input__suffix{
+         right: 3px;
+         height: calc(100% - 8px);
+         top: 4px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+       }
+     }
+ }
+ 
+ // 三级联动调整
+ .el-cascader{
+   display: block;
+   .el-cascader__label{
+     top: 50%;
+   }
+ }
+ 
+ // 表格样式调整
+ // 表头样式
+ .el-table__header{
+   border-bottom: 2px solid rgba(87, 90, 93, 1);
+ }
+ .el-table thead{
+   font-weight: 700;
+   font-size: 13px;
+   color: #2C2E30 !important;
+ }
+ .tab-list__header{
+   font-weight: 700;
+   font-size: 13px;
+   color: #2C2E30 !important;
+   cursor: pointer;
+   user-select: none;
+ }
+ // 无内容
+ .el-table__empty-block{
+   min-height: 46px;
+   .el-table__empty-text{
+     width: 100%;
+   }
+ }
+ 
+ // 全局提示样式
+ .ptInfoMessage{
+   background-color: rgba(2, 92, 145, 1);
+   border: none;
+   border-radius: 4px;
+   min-width: 250px;
+   text-align: center;
+   margin-top: 4%;
+   .el-message__icon{
+     display: none;
+   }
+   .el-message__content{
+     color: #fff;
+   }
+ }
